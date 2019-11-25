@@ -23,7 +23,7 @@
 <meta property="og:image" content="/2019/11/25/2019NCTF-Web-Wp/8.png">
 <meta property="og:image" content="/2019/11/25/2019NCTF-Web-Wp/6.png">
 <meta property="og:image" content="/2019/11/25/2019NCTF-Web-Wp/7.png">
-<meta property="og:updated_time" content="2019-11-25T12:49:40.421Z">
+<meta property="og:updated_time" content="2019-11-25T12:52:08.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019NCTF_Web_Wp">
 <meta name="twitter:description" content="2019NCTF_Web[TOC] Fake XML cookbook抓包，推测username处可能有XXE漏洞（和UNCTF新星赛前端一样，直接拿payload打直接xxepauload上 True XML cookbook和第一题同一个地方有xxe，根目录和其他地方下找不到flag。。。，猜测可能是放到内网 123/proc/net/fib_trie  路由树/etc/hosts  linu">
@@ -173,6 +173,8 @@
 
 <h2 id="replace"><a href="#replace" class="headerlink" title="replace"></a>replace</h2><p>查看<code>hint.php</code>,提示<code>使用php5.6+bootstrap进行开发</code>,找了一会<code>bootstrap</code>的漏洞，只有xss。。。<br>随便尝试了一下发现命令执行了。。<br><img src="/2019/11/25/2019NCTF-Web-Wp/8.png" alt><br>读取根目录下文件<br><img src="/2019/11/25/2019NCTF-Web-Wp/6.png" alt><br>发现有waf，过滤了了<code>system `` &quot;&quot;</code>等<br><code>sub=phpinfo()1&amp;pat=1&amp;rep=print(file_get_contents(chr(46).chr(47).(index).chr(46).(php)))</code><br>用chr()可以避免用引号<br><img src="/2019/11/25/2019NCTF-Web-Wp/7.png" alt></p>
 <h2 id="phar-matches-everything"><a href="#phar-matches-everything" class="headerlink" title="phar matches everything"></a>phar matches everything</h2><p>提示<code>I hate VIM.</code><br>肯定有<code>swp</code>文件，泄露源码，没找到。。。</p>
+<hr>
+<p>ak了Web题大师傅的博客<br><a href="https://nikoeurus.github.io/2019/11/25/2019NJUPTctf-wp/" target="_blank" rel="noopener">https://nikoeurus.github.io/2019/11/25/2019NJUPTctf-wp/</a></p>
 
   </div>
 </article>
