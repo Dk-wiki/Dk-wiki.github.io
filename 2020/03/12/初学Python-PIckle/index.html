@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="初学Python PIckle 前言前几天比赛碰到没学过的知识点了，补一波，自己还是太菜了 Pickle：Python序列化、反序列化pickle.dumps( ) == 序列化(将一个对象打包成一堆看不懂的字符串) 123456789101112import pickleimport pickletoolsimport osclass test():    def __init__(self):">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初学Python PIckle">
+<meta property="og:url" content="/2020/03/12/初学Python-PIckle/index.html">
+<meta property="og:site_name" content="dkk-blog">
+<meta property="og:description" content="初学Python PIckle 前言前几天比赛碰到没学过的知识点了，补一波，自己还是太菜了 Pickle：Python序列化、反序列化pickle.dumps( ) == 序列化(将一个对象打包成一堆看不懂的字符串) 123456789101112import pickleimport pickletoolsimport osclass test():    def __init__(self):">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="/2020/03/12/初学Python-PIckle/1.png">
+<meta property="og:image" content="/2020/03/12/初学Python-PIckle/2.png">
+<meta property="og:image" content="/2020/03/12/初学Python-PIckle/3.png">
+<meta property="og:image" content="/2020/03/12/初学Python-PIckle/4.png">
+<meta property="og:image" content="/2020/03/12/初学Python-PIckle/5.png">
+<meta property="og:image" content="/2020/03/12/初学Python-PIckle/6.png">
+<meta property="og:image" content="/2020/03/12/初学Python-PIckle/7.png">
+<meta property="og:updated_time" content="2020-03-12T18:03:21.467Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初学Python PIckle">
+<meta name="twitter:description" content="初学Python PIckle 前言前几天比赛碰到没学过的知识点了，补一波，自己还是太菜了 Pickle：Python序列化、反序列化pickle.dumps( ) == 序列化(将一个对象打包成一堆看不懂的字符串) 123456789101112import pickleimport pickletoolsimport osclass test():    def __init__(self):">
+<meta name="twitter:image" content="/2020/03/12/初学Python-PIckle/1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>初学Python PIckle</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/03/09/高校战疫联赛部分Writeup/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=/2020/03/12/初学Python-PIckle/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=/2020/03/12/初学Python-PIckle/&text=初学Python PIckle"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=/2020/03/12/初学Python-PIckle/&title=初学Python PIckle"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=/2020/03/12/初学Python-PIckle/&is_video=false&description=初学Python PIckle"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=初学Python PIckle&body=Check out this article: /2020/03/12/初学Python-PIckle/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=/2020/03/12/初学Python-PIckle/&title=初学Python PIckle"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=/2020/03/12/初学Python-PIckle/&title=初学Python PIckle"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2020/03/12/初学Python-PIckle/&title=初学Python PIckle"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=/2020/03/12/初学Python-PIckle/&title=初学Python PIckle"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2020/03/12/初学Python-PIckle/&name=初学Python PIckle&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">初学Python PIckle</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.2.</span> <span class="toc-text">Pickle：Python序列化、反序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.3.</span> <span class="toc-text">pickletools调试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.3.1.</span> <span class="toc-text">基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.3.2.</span> <span class="toc-text">pickle：语法严格、向前兼容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.3.3.</span> <span class="toc-text">举一个🌰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.3.4.</span> <span class="toc-text">reduce 利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.3.5.</span> <span class="toc-text">例题：高校公益赛webtmp</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        初学Python PIckle
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">dkk-blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-03-12T15:46:15.000Z" itemprop="datePublished">2020-03-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Web/">Web</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1><span id="初学python-pickle">初学Python PIckle</span></h1><hr>
+<h2><span id="前言">前言</span></h2><p>前几天比赛碰到没学过的知识点了，补一波，自己还是太菜了</p>
+<h2><span id="picklepython序列化-反序列化">Pickle：Python序列化、反序列化</span></h2><p>pickle.dumps( ) == 序列化(将一个对象打包成一堆看不懂的字符串)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="keyword">import</span> pickletools</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.text = <span class="string">"admin"</span></span><br><span class="line">        self.data = <span class="number">123456</span></span><br><span class="line">        self.dir = [<span class="string">"CTF"</span>,<span class="string">"egg"</span>,<span class="string">"dkk"</span>]</span><br><span class="line">payload = test()</span><br><span class="line">print(pickle.dumps(payload))</span><br><span class="line"></span><br><span class="line"><span class="comment"># b'\x80\x03c__main__\ntest\nq\x00)\x81q\x01&#125;q\x02(X\x04\x00\x00\x00textq\x03X\x05\x00\x00\x00adminq\x04X\x04\x00\x00\x00dataq\x05J@\xe2\x01\x00X\x03\x00\x00\x00dirq\x06]q\x07(X\x03\x00\x00\x00CTFq\x08X\x03\x00\x00\x00eggq\tX\x03\x00\x00\x00dkkq\neub.'</span></span><br></pre></td></tr></table></figure>
+
+<p>pickle.loads( ) == 反序列化 （将一堆看不懂的字符串转化为对象）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="keyword">import</span> pickletools</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.text = <span class="string">"admin"</span></span><br><span class="line">        self.data = <span class="number">123456</span></span><br><span class="line">        self.dir = [<span class="string">"CTF"</span>,<span class="string">"egg"</span>,<span class="string">"dkk"</span>]</span><br><span class="line">payload = test()</span><br><span class="line">size = pickle.dumps(payload)</span><br><span class="line">print(str(pickle.loads(size).__dict__))</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'text': 'admin', 'data': 123456, 'dir': ['CTF', 'egg', 'dkk']&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>pickle.loads机制</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line">pickle.__file__<span class="comment"># 查看pickle源码位置</span></span><br></pre></td></tr></table></figure>
+
+<p>pickle.loads是一个供我们调用的接口。其底层实现是基于_Unpickler类。代码实现如下<br><img src="/2020/03/12/初学Python-PIckle/1.png" alt><br>再看<code>_Unpickler</code>的源码，好像是对栈的一些操作，俺也看不太懂，溜了溜了</p>
+<h2><span id="pickletools调试">pickletools调试</span></h2><h3><span id="基本操作">基本操作</span></h3><p>pickletools是python自带的pickle调试器，有三个功能：<br><code>pickletools.dis(pickle, out=None, memo=None, indentlevel=4)</code>反汇编一个已经被打包的字符串、<br><code>pickletools.optimize(picklestring)</code>优化一个已经被打包的字符串、<br><code>pickletools.genops(pickle)</code>返回一个迭代器来供程序使用。<br><img src="/2020/03/12/初学Python-PIckle/2.png" alt><br>反汇编结果中，BINPUT指令没有了,所谓“优化”，其实就是把不必要的PUT指令给删除掉。这个PUT意思是把当前栈的栈顶复制一份，放进储存区,我们并不需要这个操作，可以省略掉这些PUT指令.</p>
+<h3><span id="pickle语法严格-向前兼容">pickle：语法严格、向前兼容</span></h3><p>pickle构造出的字符串，有很多个版本。在pickle.loads时，可以用Protocol参数指定协议版本，例如指定为0号版本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="keyword">import</span> pickletools</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.text = <span class="string">"admin"</span></span><br><span class="line">        self.data = <span class="number">123456</span></span><br><span class="line">        self.dir = [<span class="string">"CTF"</span>,<span class="string">"egg"</span>,<span class="string">"dkk"</span>]</span><br><span class="line">payload = test()</span><br><span class="line">dumps = (pickle.dumps(payload,protocol=<span class="number">0</span>))</span><br><span class="line">dumps = pickletools.optimize(dumps)</span><br><span class="line">pickletools.dis(dumps)</span><br><span class="line"></span><br><span class="line"><span class="comment"># b'ccopy_reg\n_reconstructor\np0\n(c__main__\ntest\np1\nc__builtin__\nobject\np2\nNtp3\nRp4\n(dp5\nVtext\np6\nVadmin\np7\nsVdata\np8\nI123456\nsVdir\np9\n(lp10\nVCTF\np11\naVegg\np12\naVdkk\np13\nasb.'</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到与上面的序列化结果(默认版本号：3)有所区别<br><img src="/2020/03/12/初学Python-PIckle/3.png" alt><br>0号起码还是可读的，之后的版本加入了一大堆不可打印字符<br><img src="/2020/03/12/初学Python-PIckle/4.png" alt><br><strong>pickle协议是向前兼容的</strong><br>所以可以使用0号版本的字符串可以直接交给<code>pickle.loads()</code></p>
+<h3><span id="举一个">举一个🌰</span></h3><p><img src="/2020/03/12/初学Python-PIckle/5.png" alt><br>第一个字节<code>\x80 源码注释#identify pickle protocol</code>机器看到这个操作符，立刻再去字符串读取一个字节，得到<code>\x03</code>。解释为“这是一个3号协议序列化的字符串”。<br>第二个字节<code>c</code>它连续读取两个字符串module和name（用<code>\n</code>分割）,接下来把module.name这个东西压进栈。我们这里就是把<code>__main__.test</code>放进栈里<br>第三个字节<code>)</code> push empty tuple<br>第四个字节<code>\x81</code> 从栈中先弹出一个元素，记为args；再弹出一个元素，记为cls。接下来，执行<code>cls.__new__(cls, *args)</code>，然后把得到的东西进栈，也就是我们实例化的对象<code>test</code>放进栈<br>第五个字节<code>}</code>push empty dict<br>第六个字节<code>X</code>counted UTF-8 string argument<br>第七个字节<code>]</code>push empty list 把当前栈这个整体，作为一个list，压进前序栈,把当前栈清空。这个操作也叫<code>load_mark</code><br>与它相反的另一个操作<code>pop_mark</code><br><code>X K</code>按照传入的类型执行进栈的操作<br><code>e</code>目前的<br><code>s</code>向dict添加key+value<br><code>b</code>把当前栈栈顶存进state，然后弹掉,把当前栈栈顶记为inst，然后弹掉,利用state这一系列的值来更新实例inst。把得到的对象扔进当前栈.</p>
+<h3><span id="reduce-利用"><strong>reduce</strong> 利用</span></h3><p><code>class</code>的<code>__reduce__</code>方法，在<code>pickle</code>反序列化的时候会被执行。其底层的编码方法，就是利用了<code>R</code>指令码<br><img src="/2020/03/12/初学Python-PIckle/6.png" alt><br><img src="/2020/03/12/初学Python-PIckle/7.png" alt><br>下面这个里面没有<strong>reduce</strong>方法</p>
+<h3><span id="例题高校公益赛webtmp">例题：高校公益赛webtmp</span></h3><p>彻底过滤了R指令码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="string">b'R'</span> <span class="keyword">in</span> base64.b64decode(pickle_data):</span><br><span class="line">                <span class="keyword">return</span> <span class="string">'No... I don\'t like R-things. No Rabits, Rats, Roosters or RCEs.'</span></span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">初学Python PIckle</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.2.</span> <span class="toc-text">Pickle：Python序列化、反序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.3.</span> <span class="toc-text">pickletools调试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.3.1.</span> <span class="toc-text">基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.3.2.</span> <span class="toc-text">pickle：语法严格、向前兼容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.3.3.</span> <span class="toc-text">举一个🌰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.3.4.</span> <span class="toc-text">reduce 利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.3.5.</span> <span class="toc-text">例题：高校公益赛webtmp</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=/2020/03/12/初学Python-PIckle/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=/2020/03/12/初学Python-PIckle/&text=初学Python PIckle"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=/2020/03/12/初学Python-PIckle/&title=初学Python PIckle"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=/2020/03/12/初学Python-PIckle/&is_video=false&description=初学Python PIckle"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=初学Python PIckle&body=Check out this article: /2020/03/12/初学Python-PIckle/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=/2020/03/12/初学Python-PIckle/&title=初学Python PIckle"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=/2020/03/12/初学Python-PIckle/&title=初学Python PIckle"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2020/03/12/初学Python-PIckle/&title=初学Python PIckle"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=/2020/03/12/初学Python-PIckle/&title=初学Python PIckle"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2020/03/12/初学Python-PIckle/&name=初学Python PIckle&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 dkk
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+  <br />
+  <img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#fdebe7" target="_blank" text-align="center">苏ICP备19045774号-1</a>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
