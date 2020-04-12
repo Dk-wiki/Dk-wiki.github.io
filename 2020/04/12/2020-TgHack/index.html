@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="TgHack_2020_WebShop（easy）题目就给了我们100刀，并且可以借$200，我们购买Flag要$1337，发现购买不存在的商品且提交为负数他会退款exp: 12/storeid=9999&amp;amp;sum=-2000   Reduxjs里面找到flag ExfiltrationXss我打了半天没打到，戴师傅一次成功，玄学 Bobbyexp: 1new_pass:  &amp;apos;,p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2020_TgHack">
+<meta property="og:url" content="/2020/04/12/2020-TgHack/index.html">
+<meta property="og:site_name" content="dkk-blog">
+<meta property="og:description" content="TgHack_2020_WebShop（easy）题目就给了我们100刀，并且可以借$200，我们购买Flag要$1337，发现购买不存在的商品且提交为负数他会退款exp: 12/storeid=9999&amp;amp;sum=-2000   Reduxjs里面找到flag ExfiltrationXss我打了半天没打到，戴师傅一次成功，玄学 Bobbyexp: 1new_pass:  &amp;apos;,p">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="/2020/04/12/2020-TgHack/1.png">
+<meta property="og:image" content="/2020/04/12/2020-TgHack/3.png">
+<meta property="og:image" content="/2020/04/12/2020-TgHack/2.png">
+<meta property="og:image" content="/2020/04/12/2020-TgHack/4.png">
+<meta property="og:updated_time" content="2020-04-12T07:05:09.830Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2020_TgHack">
+<meta name="twitter:description" content="TgHack_2020_WebShop（easy）题目就给了我们100刀，并且可以借$200，我们购买Flag要$1337，发现购买不存在的商品且提交为负数他会退款exp: 12/storeid=9999&amp;amp;sum=-2000   Reduxjs里面找到flag ExfiltrationXss我打了半天没打到，戴师傅一次成功，玄学 Bobbyexp: 1new_pass:  &amp;apos;,p">
+<meta name="twitter:image" content="/2020/04/12/2020-TgHack/1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+          
+        
+    
+    <!-- title -->
+    <title>2020_TgHack</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+    <link rel="stylesheet" href="/live2d/css/live2d.css">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/04/10/0410随笔/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=/2020/04/12/2020-TgHack/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=/2020/04/12/2020-TgHack/&text=2020_TgHack"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=/2020/04/12/2020-TgHack/&title=2020_TgHack"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=/2020/04/12/2020-TgHack/&is_video=false&description=2020_TgHack"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=2020_TgHack&body=Check out this article: /2020/04/12/2020-TgHack/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=/2020/04/12/2020-TgHack/&title=2020_TgHack"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=/2020/04/12/2020-TgHack/&title=2020_TgHack"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2020/04/12/2020-TgHack/&title=2020_TgHack"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=/2020/04/12/2020-TgHack/&title=2020_TgHack"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2020/04/12/2020-TgHack/&name=2020_TgHack&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">TgHack_2020_Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">Shop（easy）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.2.</span> <span class="toc-text">Redux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.3.</span> <span class="toc-text">Exfiltration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.4.</span> <span class="toc-text">Bobby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.5.</span> <span class="toc-text">zero</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.6.</span> <span class="toc-text">Files</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        2020_TgHack
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">dkk-blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-04-12T06:02:10.000Z" itemprop="datePublished">2020-04-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1><span id="tghack_2020_web">TgHack_2020_Web</span></h1><h2><span id="shopeasy">Shop（easy）</span></h2><p>题目就给了我们100刀，并且可以借$200，我们购买Flag要$1337，发现购买不存在的商品且提交为负数他会退款<br>exp:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/store</span><br><span class="line">id=9999&amp;sum=-2000</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/04/12/2020-TgHack/1.png" alt></p>
+<h2><span id="redux">Redux</span></h2><p>js里面找到flag<br><img src="/2020/04/12/2020-TgHack/3.png" alt></p>
+<h2><span id="exfiltration">Exfiltration</span></h2><p>Xss我打了半天没打到，戴师傅一次成功，玄学<br><img src="/2020/04/12/2020-TgHack/2.png" alt></p>
+<h2><span id="bobby">Bobby</span></h2><p>exp:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new_pass:  &apos;,pass=123456, user=&quot;bobby&quot; WHere 1 or pass=? or pass=? --+</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/04/12/2020-TgHack/4.png" alt></p>
+<h2><span id="zero">zero</span></h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;nettle/sha2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;nettle/sha3.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BUF_SIZE 128</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">compute_sha3_256</span><span class="params">(<span class="keyword">char</span> *digest, <span class="keyword">char</span> *str)</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sha3_256_ctx</span> <span class="title">ctx</span> = &#123;</span><span class="number">0</span>&#125;;</span><br><span class="line">    sha3_256_init(&amp;ctx);</span><br><span class="line">    sha3_256_update(&amp;ctx, strnlen(str, BUF_SIZE), str);</span><br><span class="line">    sha3_256_digest(&amp;ctx, SHA3_256_DIGEST_SIZE, digest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">compute_sha256</span><span class="params">(<span class="keyword">char</span> *digest, <span class="keyword">char</span> *str)</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sha256_ctx</span> <span class="title">ctx</span> = &#123;</span><span class="number">0</span>&#125;;</span><br><span class="line">    sha256_init(&amp;ctx);</span><br><span class="line">    sha256_update(&amp;ctx, strnlen(str, BUF_SIZE), str);</span><br><span class="line">    sha256_digest(&amp;ctx, SHA256_DIGEST_SIZE, digest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">compute_hash</span><span class="params">(<span class="keyword">char</span> *digest, <span class="keyword">char</span> *password)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> sha256_dgst[BUF_SIZE + <span class="number">1</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    compute_sha256(sha256_dgst, password);</span><br><span class="line">    compute_sha3_256(digest, sha256_dgst);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不懂 之后学习带师傅们</p>
+<h2><span id="files">Files</span></h2>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">TgHack_2020_Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">Shop（easy）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.2.</span> <span class="toc-text">Redux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.3.</span> <span class="toc-text">Exfiltration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.4.</span> <span class="toc-text">Bobby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.5.</span> <span class="toc-text">zero</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.6.</span> <span class="toc-text">Files</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=/2020/04/12/2020-TgHack/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=/2020/04/12/2020-TgHack/&text=2020_TgHack"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=/2020/04/12/2020-TgHack/&title=2020_TgHack"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=/2020/04/12/2020-TgHack/&is_video=false&description=2020_TgHack"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=2020_TgHack&body=Check out this article: /2020/04/12/2020-TgHack/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=/2020/04/12/2020-TgHack/&title=2020_TgHack"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=/2020/04/12/2020-TgHack/&title=2020_TgHack"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2020/04/12/2020-TgHack/&title=2020_TgHack"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=/2020/04/12/2020-TgHack/&title=2020_TgHack"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2020/04/12/2020-TgHack/&name=2020_TgHack&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <!-- Live2D血小板 -->
+<div id="landlord">
+  <div class="message" style="opacity:0"></div>
+  <canvas id="live2d" width="560" height="500" class="live2d"></canvas>
+  <!-- <div class="hide-button">隐藏</div> -->
+</div>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+  var message_Path = '/live2d/'
+  var home_Path = 'https://www.teaper.dev/'
+</script>
+<script type="text/javascript" src="/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="/live2d/js/message.js"></script>
+<script type="text/javascript">
+  loadlive2d("live2d", "/live2d/model/xiaoban/model.json");
+</script>
+  <div class="footer-left">
+    Copyright &copy; 2020 dkk
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+  <br />
+  <img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#fdebe7" target="_blank" text-align="center">苏ICP备19045774号-1</a>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

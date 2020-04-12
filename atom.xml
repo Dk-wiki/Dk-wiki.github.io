@@ -6,7 +6,7 @@
   <link href="http://dkk.ink/atom.xml" rel="self"/>
   
   <link href="http://dkk.ink/"/>
-  <updated>2020-04-05T10:20:08.644Z</updated>
+  <updated>2020-04-12T07:05:09.830Z</updated>
   <id>http://dkk.ink/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2020_TgHack</title>
+    <link href="http://dkk.ink/2020/04/12/2020-TgHack/"/>
+    <id>http://dkk.ink/2020/04/12/2020-TgHack/</id>
+    <published>2020-04-12T06:02:10.000Z</published>
+    <updated>2020-04-12T07:05:09.830Z</updated>
+    
+    <content type="html"><![CDATA[<h1><span id="tghack_2020_web">TgHack_2020_Web</span></h1><h2><span id="shopeasy">Shop（easy）</span></h2><p>题目就给了我们100刀，并且可以借$200，我们购买Flag要$1337，发现购买不存在的商品且提交为负数他会退款<br>exp:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/store</span><br><span class="line">id=9999&amp;sum=-2000</span><br></pre></td></tr></table></figure><p><img src="/2020/04/12/2020-TgHack/1.png" alt></p><h2><span id="redux">Redux</span></h2><p>js里面找到flag<br><img src="/2020/04/12/2020-TgHack/3.png" alt></p><h2><span id="exfiltration">Exfiltration</span></h2><p>Xss我打了半天没打到，戴师傅一次成功，玄学<br><img src="/2020/04/12/2020-TgHack/2.png" alt></p><h2><span id="bobby">Bobby</span></h2><p>exp:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new_pass:  &apos;,pass=123456, user=&quot;bobby&quot; WHere 1 or pass=? or pass=? --+</span><br></pre></td></tr></table></figure><p><img src="/2020/04/12/2020-TgHack/4.png" alt></p><h2><span id="zero">zero</span></h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;nettle/sha2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;nettle/sha3.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BUF_SIZE 128</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">compute_sha3_256</span><span class="params">(<span class="keyword">char</span> *digest, <span class="keyword">char</span> *str)</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sha3_256_ctx</span> <span class="title">ctx</span> = &#123;</span><span class="number">0</span>&#125;;</span><br><span class="line">    sha3_256_init(&amp;ctx);</span><br><span class="line">    sha3_256_update(&amp;ctx, strnlen(str, BUF_SIZE), str);</span><br><span class="line">    sha3_256_digest(&amp;ctx, SHA3_256_DIGEST_SIZE, digest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">compute_sha256</span><span class="params">(<span class="keyword">char</span> *digest, <span class="keyword">char</span> *str)</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sha256_ctx</span> <span class="title">ctx</span> = &#123;</span><span class="number">0</span>&#125;;</span><br><span class="line">    sha256_init(&amp;ctx);</span><br><span class="line">    sha256_update(&amp;ctx, strnlen(str, BUF_SIZE), str);</span><br><span class="line">    sha256_digest(&amp;ctx, SHA256_DIGEST_SIZE, digest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">compute_hash</span><span class="params">(<span class="keyword">char</span> *digest, <span class="keyword">char</span> *password)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> sha256_dgst[BUF_SIZE + <span class="number">1</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    compute_sha256(sha256_dgst, password);</span><br><span class="line">    compute_sha3_256(digest, sha256_dgst);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>不懂 之后学习带师傅们</p><h2><span id="files">Files</span></h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1&gt;&lt;span id=&quot;tghack_2020_web&quot;&gt;TgHack_2020_Web&lt;/span&gt;&lt;/h1&gt;&lt;h2&gt;&lt;span id=&quot;shopeasy&quot;&gt;Shop（easy）&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;题目就给了我们100刀，并且可以借$200，我们购买Flag要$1
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>0410随笔</title>
+    <link href="http://dkk.ink/2020/04/10/0410%E9%9A%8F%E7%AC%94/"/>
+    <id>http://dkk.ink/2020/04/10/0410随笔/</id>
+    <published>2020-04-10T05:14:48.000Z</published>
+    <updated>2020-04-10T17:20:05.859Z</updated>
+    
+    <content type="html"><![CDATA[<h1><span id="0410随笔">0410随笔</span></h1><h2><span id="最近咕咕咕的一些学习">最近咕咕咕的一些学习</span></h2><h3><span id="对mysql注入相关内容及部分trick的归类小结">对MYSQL注入相关内容及部分Trick的归类小结</span></h3><p><a href="https://xz.aliyun.com/t/7169" target="_blank" rel="noopener">https://xz.aliyun.com/t/7169</a></p><h3><span id="一道题引发的无列名注入">一道题引发的无列名注入</span></h3><p><a href="https://www.chabug.org/ctf/852.html" target="_blank" rel="noopener">https://www.chabug.org/ctf/852.html</a></p><h3><span id="oracle-sql注入学习">Oracle SQL注入学习</span></h3><p><a href="https://www.chabug.org/web/1351.html" target="_blank" rel="noopener">https://www.chabug.org/web/1351.html</a></p><h3><span id="反序列利用链">反序列利用链</span></h3><p><a href="https://blog.riskivy.com/%E6%8C%96%E6%8E%98%E6%9A%97%E8%97%8Fthinkphp%E4%B8%AD%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%88%A9%E7%94%A8%E9%93%BE/?from=timeline&amp;isappinstalled=0" target="_blank" rel="noopener">https://blog.riskivy.com/%E6%8C%96%E6%8E%98%E6%9A%97%E8%97%8Fthinkphp%E4%B8%AD%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%88%A9%E7%94%A8%E9%93%BE/?from=timeline&amp;isappinstalled=0</a></p><h3><span id="pdo场景下的sql注入探究">PDO场景下的SQL注入探究</span></h3><p><a href="https://xz.aliyun.com/t/3950" target="_blank" rel="noopener">https://xz.aliyun.com/t/3950</a></p><h3><span id="bypass-information_schema">bypass information_schema</span></h3><p><a href="https://www.anquanke.com/post/id/193512" target="_blank" rel="noopener">https://www.anquanke.com/post/id/193512</a></p><h3><span id="无需暴破还原mt_rand种子">无需暴破还原mt_rand()种子</span></h3><p><a href="https://www.anquanke.com/post/id/196831" target="_blank" rel="noopener">https://www.anquanke.com/post/id/196831</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1&gt;&lt;span id=&quot;0410随笔&quot;&gt;0410随笔&lt;/span&gt;&lt;/h1&gt;&lt;h2&gt;&lt;span id=&quot;最近咕咕咕的一些学习&quot;&gt;最近咕咕咕的一些学习&lt;/span&gt;&lt;/h2&gt;&lt;h3&gt;&lt;span id=&quot;对mysql注入相关内容及部分trick的归类小结&quot;&gt;对MYSQL注入相关内
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>复现2019D^3CTF_Web</title>
